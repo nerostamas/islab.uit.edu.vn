@@ -270,7 +270,8 @@ article.post section.post-content a.title:hover {
 }
 article.post section.post-content .title h2 {
     margin-top: 10px;
-    font-weight: 400;
+    font-weight: 300;
+    font-size: 26px;
 }
 article.post section.post-content .post-tags {
     margin-left: -5px;

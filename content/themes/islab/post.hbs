@@ -23,7 +23,13 @@
                     </ul>
                 </div>
                 <div class="site-head-content inner">
-                    <h1 class="blog-title"><a href="{{@blog.url}}">{{title}}</a></h1>
+                    <h1 class="blog-title">
+                        <a href="{{@blog.url}}">
+                            {{@blog.title}}
+                        </a>
+                    </h1>
+                    <h2>{{title}}</h2>
+                    
                     {{navigation}}
                 </div>
             </div>
@@ -38,28 +44,7 @@
                         <p>{{content}}</p>
 
                         <div class="title"><h2><br /></h2></div>
-                        <ul class="list-inline" style="margin: 0">
-                            <li><time datetime="{{date format='YYYY-MM-DD'}}">{{date published_at format="MMMM DD, YYYY HH:MM"}}</time></li>
-                            {{#foreach tags}}
-                                <li><a href="{{@blog.url}}{{url}}">#{{name}}</a></li>
-                            {{/foreach}}
-                        </ul>
-                        <ul class="list-inline" style="margin: 0">
-                            <li>
-                                Share on <a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
-                                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" rel="tooltip" title="Twitter">
-                                <span>Twitter</span>
-                            </a>,
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
-                                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" rel="tooltip" title="Facebook">
-                                <span>Facebook</span>
-                            </a>,
-                            <a href="https://plus.google.com/share?url={{url absolute="true"}}"
-                               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" rel="tooltip" title="Google+">
-                                <span>Google+</span>
-                            </a>
-                            </li>
-                        </ul>
+                        
                     </section>
 
                     <footer class="post-footer">
@@ -68,15 +53,41 @@
                         <section class="author">
                             <div class="row">
                                 <div class="col-md-1 text-center">{{#if author.image}}<div class="image" style="background-image: url({{author.image}})"></div>{{/if}}</div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="title">Author</div>
                                     <div class="name">{{author.name}}</div>
                                     <div class="bio">{{author.bio}}</div>
                                 </div>
-                                <div class="col-md-5">                                    
+                                
+                                <div class="col-md-2">                                    
                                     <ul class="meta clearfix list-unstyled">
                                         {{#if author.location}}<li>{{author.location}}</li>{{/if}}
                                         {{#if author.website}}<li><a href="{{author.website}}">{{author.website}}</a></li>{{/if}}
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <ul class="list-inline" style="margin: 0">
+                                        <li><time datetime="{{date format='YYYY-MM-DD'}}">{{date published_at format="MMMM DD, YYYY HH:MM"}}</time></li>
+                                        {{#foreach tags}}
+                                            <li><a href="{{@blog.url}}{{url}}">#{{name}}</a></li>
+                                        {{/foreach}}
+                                    </ul>
+                                    <ul class="list-inline" style="margin: 0">
+                                        <li>
+                                            Share on <a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+                                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" rel="tooltip" title="Twitter">
+                                            <span>Twitter</span>
+                                        </a>,
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" rel="tooltip" title="Facebook">
+                                            <span>Facebook</span>
+                                        </a>,
+                                        <a href="https://plus.google.com/share?url={{url absolute="true"}}"
+                                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" rel="tooltip" title="Google+">
+                                            <span>Google+</span>
+                                        </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

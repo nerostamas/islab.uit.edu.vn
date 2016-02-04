@@ -29,11 +29,21 @@
         {{! The main content area on the homepage }}
         <main class="content" role="main">
 
-            <p>{{@blog.description}}</p>
+            <div class="index_intro">
+                {{#get "posts" limit="1" slug="islab_index_intro" fields="content"}}
+                    {{#posts}}{{content}}{{/posts}}
+                {{/get}}
+            </div>
+
+            <div class="index_message">
+                {{#get "posts" limit="1" slug="islab_index_message" fields="content"}}
+                    {{#posts}}{{content}}{{/posts}}
+                {{/get}}
+            </div>
 
             {{! Each post will be output using this markup }}
             {{#foreach posts}}
-                {{^has tag="project, publication"}}
+                {{^has tag="project, publication, seminar, static"}}
                 <article class="{{post_class}}" data-url="{{url}}" id="post{{id}}">
                     <header class="post-header">
                         <div class="icon">
