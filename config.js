@@ -11,8 +11,17 @@ config = {
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://my-ghost-blog.com',
-        mail: {},
+        url: 'http://ptnhttt.uit.edu.vn',
+        mail: {
+            transport: 'SMTP',
+            options: {
+                service: 'Gmail',
+                auth: {
+                    user: 'islab.uit@gmail.com',
+                    pass: '' 
+                }
+            }
+        },
         database: {
             client: 'sqlite3',
             connection: {
