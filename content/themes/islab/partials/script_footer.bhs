@@ -1,6 +1,7 @@
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-{{! The main JavaScript file for Casper }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>window.jquery || document.write('<scr' + 'ipt src="{{asset "js/jquery.min.js"}}"><\/scr' + 'ipt>')</script>
+
 <script type="text/javascript" src="{{asset "js/bootstrap.min.js"}}"></script>
 <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
 <script type="text/javascript" src="{{asset "js/jquery.stalactite.min.js"}}"></script>
