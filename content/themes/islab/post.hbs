@@ -1,0 +1,110 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{#post}}
+<div class="row">
+    <div class="col-md-12">
+        {{! The big featured header on the homepage, with the site logo and description }}
+        <header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+            <div class="vertical">
+                <div class="menu btn-group text-left">
+                    <a class="btn btn-menu btn-xs" href="{{@blog.url}}">
+                        <i class="fa fa-home"></i>
+                    </a>
+
+                    <button type="button" class="btn btn-menu btn-xs dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    
+                    <ul class="dropdown-menu" role="menu">
+                        {{> menu}}
+                    </ul>
+                </div>
+                <div class="site-head-content inner">
+                    <h1 class="blog-title"><a href="{{@blog.url}}">{{title}}</a></h1>
+                    {{navigation}}
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="col-md-12">
+        {{! The main content area on the homepage }}
+        <main class="content" role="main">
+                <article class="{{post_class}} post-standalone" data-url="{{url}}" id="post{{id}}">
+                    <section class="post-content">
+                        
+                        <p>{{content}}</p>
+
+                        <div class="title"><h2><br /></h2></div>
+                        <ul class="list-inline" style="margin: 0">
+                            <li><time datetime="{{date format='YYYY-MM-DD'}}">{{date published_at format="MMMM DD, YYYY HH:MM"}}</time></li>
+                            {{#foreach tags}}
+                                <li><a href="{{@blog.url}}{{url}}">#{{name}}</a></li>
+                            {{/foreach}}
+                        </ul>
+                        <ul class="list-inline" style="margin: 0">
+                            <li>
+                                Share on <a href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+                                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" rel="tooltip" title="Twitter">
+                                <span>Twitter</span>
+                            </a>,
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" rel="tooltip" title="Facebook">
+                                <span>Facebook</span>
+                            </a>,
+                            <a href="https://plus.google.com/share?url={{url absolute="true"}}"
+                               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" rel="tooltip" title="Google+">
+                                <span>Google+</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <footer class="post-footer">
+                        
+
+                        <section class="author">
+                            <div class="row">
+                                <div class="col-md-1 text-center">{{#if author.image}}<div class="image" style="background-image: url({{author.image}})"></div>{{/if}}</div>
+                                <div class="col-md-6">
+                                    <div class="title">Author</div>
+                                    <div class="name">{{author.name}}</div>
+                                    <div class="bio">{{author.bio}}</div>
+                                </div>
+                                <div class="col-md-5">                                    
+                                    <ul class="meta clearfix list-unstyled">
+                                        {{#if author.location}}<li>{{author.location}}</li>{{/if}}
+                                        {{#if author.website}}<li><a href="{{author.website}}">{{author.website}}</a></li>{{/if}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="share">
+                            
+                        </section>
+
+                        <section class="comments">
+                            <div id="disqus_thread"></div>
+                                <script>
+                                    (function() { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+
+                                        s.src = 'https://islab.disqus.com/embed.js';
+
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                        </section>
+                    </footer>
+                </article>
+            
+
+        </main>
+    </div>
+</div>
+{{/post}}

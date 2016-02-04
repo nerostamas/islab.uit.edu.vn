@@ -1,0 +1,70 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+<div class="row">
+    <div class="col-md-12">
+        {{! The big featured header on the homepage, with the site logo and description }}
+        <header class="site-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+            <div class="vertical">
+                <div class="menu btn-group text-left">
+                    <button type="button" class="btn btn-menu btn-xs dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        {{> menu}}
+                    </ul>
+                </div>
+                <div class="site-head-content inner">
+                    {{#if @blog.logo}}<a href="{{@blog.url}}"><div class="blog-logo" {{#if @blog.logo}}style="background-image: url({{@blog.logo}})"{{/if}}></div></a>{{/if}}
+                    <h1 class="blog-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h1>
+                    <h2 class="blog-description">{{@blog.description}}</h2>
+                    {{navigation}}
+                </div>
+            </div>
+        </header>
+    </div>
+    <div class="col-md-12">
+        {{! The main content area on the homepage }}
+        <main class="content" role="main">
+
+            <p>{{@blog.description}}</p>
+
+            {{! Each post will be output using this markup }}
+            {{#foreach posts}}
+                {{^has tag="project, publication"}}
+                <article class="{{post_class}}" data-url="{{url}}" id="post{{id}}">
+                    <header class="post-header">
+                        <div class="icon">
+                            {{> posticon}}
+                        </div>
+                        <div class="post-title" title="{{title}}">{{{title}}}</div>
+                        <div class="post-excerpt">{{excerpt characters="20"}}&#8230;</div>
+                        <div class="post-meta">
+                            <time datetime="{{date format='YYYY-MM-DD'}}">{{date published_at timeago="true"}}</time>
+                        </div>
+                    </header>
+                    <section class="post-content">
+                        <a href="{{url}}" class="title"><h2>{{title}}</h2></a>
+                        <ul class="post-tags list-inline">
+                            <li><time datetime="{{date format='YYYY-MM-DD'}}">{{date published_at format="MMMM DD, YYYY HH:MM"}}</time></li>
+                            {{#foreach tags}}
+                                <li><a href="{{@blog.url}}{{url}}">#{{name}}</a></li>
+                            {{/foreach}}
+                            <li><a href="{{url}}#disqus_thread" class="post-comment-count" rel="tooltip" title="Комментарии" data-placement="left"></a></li>
+                        </ul>
+                        <p>{{content}}</p>
+                    </section>
+                </article>
+                {{/has}}
+            {{/foreach}}
+
+            {{!! After all the posts, we have the previous/next pagination links }}
+            {{pagination}}
+
+        </main>
+    </div>
+</div>
+
+<script id="dsq-count-scr" src="https://islab.disqus.com/count.js" async></script>

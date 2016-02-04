@@ -1,0 +1,7 @@
+{
+  "name":"long-intro",
+  "version": "0.x",
+  "dependencies": {
+    "ghost-app": "0.0.2"
+  }
+}

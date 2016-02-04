@@ -1,0 +1,65 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+{{! The big featured header }}
+
+{{! Everything inside the #author tags pulls data from the author }}
+{{#author}}
+
+<div class="row">
+    <div class="col-md-12">
+        {{! The big featured header on the homepage, with the site logo and description }}
+        <header class="site-head author-head" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+            <div class="vertical">
+                <div class="menu btn-group text-left">
+                    <a class="btn btn-menu btn-xs" href="{{@blog.url}}">
+                        <i class="fa fa-home"></i>
+                    </a>
+                    
+                    <button type="button" class="btn btn-menu btn-xs dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        {{> menu}}
+                    </ul>
+                </div>
+                <div class="site-head-content inner">
+                    {{#if @blog.logo}}<a href="{{@blog.url}}"><div class="blog-logo" {{#if @blog.logo}}style="background-image: url({{@blog.logo}})"{{/if}}></div></a>{{/if}}
+                    <h1 class="blog-title">{{name}}</h1>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="col-md-12">
+        <main class="content" role="main">
+            <article class="post-standalone">
+                <section class="post-content">
+                    {{#if image}}
+                        <figure class="author-image">
+                            <div class="img" style="background-image: url({{image}})"><span class="hidden">{{name}}'s Picture</span></div>
+                        </figure>
+                    {{/if}}
+
+                    <div class="col-md-5">
+                        <table class="table table-bordered">
+                            {{#if location}}
+                                <tr><td>location</td><td>{{location}}</td></tr>
+                            {{/if}}
+
+                            {{#if website}}
+                                <tr><td>website</td><td><a href="{{website}}">{{website}}</a></td></tr>
+                            {{/if}}
+
+                            {{#if bio}}
+                                <tr><td>about</td><td class="author-bio">{{bio}}</td></tr>
+                            {{/if}}
+                        </table>
+                    </div>
+
+                </section>
+            </article>
+        </main>
+    </div>
+</div>
+{{/author}}
